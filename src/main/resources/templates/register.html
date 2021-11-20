@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <title>Exercise</title>
+</head>
+<body>
+
+<form th:action="@{/register}" method="post" th:object="${userDto}">
+    <div>
+        <label>Username</label>
+        <input th:field="*{username}" pattern="[a-zA-Z0-9]*"
+               title="Username should be alpha-numeric value only"/>
+        <p th:each="error: ${#fields.errors('username')}"
+           th:text="${error}" th:style="'color: red;'">Validation error</p>
+    </div>
+    <div>
+        <label>Password</label>
+        <input th:field="*{password}" th:type="password"/>
+        <p th:each="error : ${#fields.errors('password')}"
+           th:text="${error}" th:style="'color: red;'">Validation error</p>
+    </div>
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
